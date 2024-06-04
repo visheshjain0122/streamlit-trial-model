@@ -1,23 +1,28 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error, r2_score
-import altair as alt
-import time
-import zipfile
+# Install all necessary libraries
+!pip install sentence-transformers
+!pip install pysbd
+!pip install sumy
+!pip install nltk
+!pip install spacy
+!python -m spacy download en_core_web_sm
+!pip install gensim numpy
+!pip install regex
+! pip install -U git+https://github.com/linto-ai/whisper-timestamped
+
+'''
+'''
+
 
 # Page title
-st.set_page_config(page_title='ML Model Building', page_icon='🤖')
-st.title('🤖 ML Model Building')
+st.set_page_config(page_title='Transcript Analysis and Content Generation')
+st.title('Transcript Analysis and Content Generation')
 
 with st.expander('About this app'):
   st.markdown('**What can this app do?**')
-  st.info('This app allow users to build a machine learning (ML) model in an end-to-end workflow. Particularly, this encompasses data upload, data pre-processing, ML model building and post-model analysis.')
+  st.info('This app allows users to provide a podcast as an MP3 file and it will generate content such as summaries, QnA extracted from the text and Bite-Sized Content.')
 
   st.markdown('**How to use the app?**')
-  st.warning('To engage with the app, go to the sidebar and 1. Select a data set and 2. Adjust the model parameters by adjusting the various slider widgets. As a result, this would initiate the ML model building process, display the model results as well as allowing users to download the generated models and accompanying data.')
+  st.warning('To begin, firstly, input the MP3 file. Next, select the max word cap for the summariser (keep in mind, the summary must be longer than the actual text length, and that the smaller the summary, the longer it will take to generate).')
 
   st.markdown('**Under the hood**')
   st.markdown('Data sets:')
